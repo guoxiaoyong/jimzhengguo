@@ -5,8 +5,7 @@ from video_extension import VideoExtension
 
 AUTHOR = 'jim zheng guo'
 SITENAME = 'jim.kangaroo.g2.fdis'
-SITESUBTITLE = 'Kangaroo G2 FDIS'
-SITEURL = ''
+#SITESUBTITLE = 'Kangaroo G2 FDIS'
 
 #THEME = 'themes/pelican-elegant-1.3'
 THEME = 'themes/attila-1.2'
