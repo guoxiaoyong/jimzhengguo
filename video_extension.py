@@ -3,10 +3,14 @@ from markdown.preprocessors import Preprocessor
 from markdown.extensions import Extension
 
 tmpl = """
-<video class="video-js" controls preload="auto" width="600"
-  poster="images/poster.png" data-setup="{{}}">
+<div style="border: 5px yellow solid; padding:5px">
+<video class="video-js" controls preload="auto" width="800" height="600"
+  poster="images/poster.png" data-setup="{{}}"
+  style="border: 2px green solid"
+>
     <source src="{video_src}" type='video/mp4'>
 </video>
+</div>
 """.replace('\n', '')
 
 pattern = r'\[\[video:[\a-z0-9_.]+\]\]'
