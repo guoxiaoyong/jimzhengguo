@@ -1,0 +1,74 @@
+app_path = "C:\Documents and Settings\Administrator\桌面\sayhi\"
+app_name = "FlashPlayer7.exe"
+
+Rx = Plugin.GetSysInfo.GetScreenResolutionXy = Plugin.GetSysInfo.GetScreenResolutionY 
+numIters = 2
+
+
+file_name = Lib.文件.遍历指定目录下所有文件名(app_path)
+
+
+Sub send_CTRL_F() 
+   KeyDown 17, 1
+   KeyPress 70, 1
+   KeyUp 17, 1
+End Sub
+
+
+Function CheckRegion(xl,xr, yu, yd)
+ 
+   CheckRegion = True
+   
+   For x = xl To xr
+	 color = GetPixelColor(x, yu)
+		If color <> "000000" Then 
+			CheckRegion = False
+			Exit Function
+		End If
+   Next
+   
+   For x = xl To xr
+	 color = GetPixelColor(x, yd)
+		If color <> "000000" Then 
+			CheckRegion = False
+			Exit Function
+		End If
+   Next
+
+   For y = yu To yd
+	 color = GetPixelColor(xl, y)
+		If color <> "000000" Then 
+			CheckRegion = False
+			Exit Function
+		End If
+    Next
+
+   For y = yu To yd
+	 color = GetPixelColor(xr, y)
+		If color <> "000000" Then 
+			CheckRegion = False
+			Exit Function
+		End If
+   Next  
+
+End Function
+
+numIters = 100
+
+For j = 1 to numIters
+For i = 0 To UBound(file_name)-1
+
+	RunApp app_path+"exe\"+app_name+" "+app_path+file_name(i)
+    Delay 1
+
+    handle = Lib.API.查找窗口句柄(0, "Macromedia Flash Player 7")
+    Lib.API.激活窗口并置前 (handle)
+    send_CTRL_F 
+    
+    While CheckRegion(435, 1000, 130, 610) = False
+        Delay 3000
+    Wend 
+    Call Lib.系统.结束进程("FlashPlayer7.exe")
+Next
+Next
+

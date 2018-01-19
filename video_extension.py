@@ -4,7 +4,8 @@ from markdown.extensions import Extension
 
 tmpl = """
 <div style="border: 5px yellow solid; padding:5px">
-<video class="video-js" controls preload="auto" width="800" height="600"
+<video class="video-js" controls preload="auto" width="100%" height="100%"
+  object-fit: "fill"
   poster="images/poster.png" data-setup="{{}}"
   style="border: 2px green solid"
 >
